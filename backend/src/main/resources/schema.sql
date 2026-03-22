@@ -1,0 +1,1 @@
+-- Schema only (tables are created in data.sql with IF NOT EXISTS)

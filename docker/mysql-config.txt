@@ -1,0 +1,18 @@
+#===============================================
+# MySQL 本地配置文件
+# ManagementPlat - SAP统一管理平台
+#===============================================
+
+# 此文件用于配置本地MySQL连接
+# 将以下配置添加到 backend/src/main/resources/application-mysql.yml
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/manageplat?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: root123
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 30000

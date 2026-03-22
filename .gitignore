@@ -1,0 +1,45 @@
+# Java
+*.class
+*.jar
+*.war
+*.ear
+target/
+*.classpath
+*.project
+*.settings/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Environment
+.env
+*.env.local
+
+# Build
+dist/
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Docker
+docker-compose.override.yml
+
+# Database
+*.sql.bak
+*.backup
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+.cache/

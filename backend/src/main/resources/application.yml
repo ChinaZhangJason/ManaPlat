@@ -1,0 +1,70 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: manageplat
+
+  profiles:
+    active: dev
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+
+  # H2 Database (default for dev)
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:manageplat;DB_CLOSE_DELAY=-1;MODE=MySQL;DATABASE_TO_LOWER=TRUE
+    username: sa
+    password: 
+    hikari:
+      maximum-pool-size: 5
+
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
+      data-locations: classpath:data.sql
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.platform.*.model
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+jwt:
+  secret: ${JWT_SECRET:manageplat-secret-key-change-in-production-environment}
+  expiration: 86400000
+  refresh-expiration: 604800000
+
+sso:
+  token-secret: ${SSO_TOKEN_SECRET:platformSsoTokenSecretKeyMustBeAtLeast256BitsLong!!}
+  token-expiration: 300000
+
+hana:
+  pools:
+    - name: ${HANA_POOL_NAME:HANA_DEFAULT}
+      host: ${HANA_HOST:localhost}
+      port: ${HANA_PORT:30015}
+      database: ${HANA_DATABASE:HANA_DEFAULT}
+      username: ${HANA_USERNAME:SYSTEM}
+      password: ${HANA_PASSWORD:hana123}
+
+logging:
+  level:
+    com.platform: DEBUG
+    org.springframework.security: INFO
