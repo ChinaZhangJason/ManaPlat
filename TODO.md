@@ -8,6 +8,10 @@
 ## 短期任务 (1-2周)
 
 ### 1. 测试验证
+- [x] 配置ESLint和Vitest测试框架 ✅
+- [x] 创建WSL环境启动脚本 ✅
+- [x] 添加Docker开发环境配置 ✅
+- [x] 编写测试和运行指南文档 ✅
 - [ ] 运行后端测试验证代码
   ```bash
   cd backend && mvn test
@@ -16,7 +20,8 @@
   ```bash
   cd frontend && npm test
   ```
-- [ ] 解决WSL/npm依赖安装问题
+- [x] 解决WSL/npm依赖安装问题
+  - 已创建WSL_SETUP.md文档
 - [ ] 修复HANA连接测试
 - [ ] 生成测试覆盖率报告
 
