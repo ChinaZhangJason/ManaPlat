@@ -104,7 +104,7 @@ class AuthDtoTest {
     @Test
     void testEmailValidation() {
         String email = "test@example.com";
-        boolean isValid = email.matches("^[^\s@]+@[^\s@]+\.[^\s@]+$");
+        boolean isValid = email.matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$");
         
         assertTrue(isValid);
     }

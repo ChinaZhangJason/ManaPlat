@@ -43,7 +43,6 @@ public class HanaQueryServiceImpl implements HanaQueryService {
         log.setSystemId(systemId);
         log.setSqlContent(sql);
         log.setParams(toJson(params));
-        log.setExecuteTime(LocalDateTime.now());
         
         long startTime = System.currentTimeMillis();
         try {

@@ -5,6 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -47,11 +49,11 @@ class ResultTest {
 
     @Test
     void testResultWithComplexData() {
-        Result<Object> result = Result.success(new Object() {{
-            put("id", 1);
-            put("name", "test");
-            put("timestamp", LocalDateTime.now());
-        }});
+        Map<String, Object> data = new java.util.HashMap<>();
+        data.put("id", 1);
+        data.put("name", "test");
+        data.put("timestamp", LocalDateTime.now());
+        Result<Object> result = Result.success(data);
         
         assertEquals(200, result.getCode());
         assertNotNull(result.getData());

@@ -3,6 +3,7 @@ package com.platform.workflow;
 import com.platform.workflow.model.WorkflowDefinition;
 import com.platform.workflow.model.WorkflowInstance;
 import com.platform.workflow.model.WorkflowTask;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -14,8 +15,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class WorkflowTest {
 
+    private final ObjectMapper objectMapper = new ObjectMapper();
+
     @Test
-    void testWorkflowDefinitionCreation() {
+    void testWorkflowDefinitionCreation() throws Exception {
         WorkflowDefinition definition = new WorkflowDefinition();
         definition.setId(1L);
         definition.setDefinitionName("请假审批流程");
@@ -26,7 +29,7 @@ class WorkflowTest {
         Map<String, Object> flowConfig = new HashMap<>();
         flowConfig.put("startState", "DRAFT");
         flowConfig.put("states", Arrays.asList("DRAFT", "PENDING_APPROVAL", "APPROVED", "REJECTED"));
-        definition.setFlowConfig(com.alibaba.fastjson2.JSON.toJSONString(flowConfig));
+        definition.setFlowConfig(objectMapper.writeValueAsString(flowConfig));
         
         assertEquals("请假审批流程", definition.getDefinitionName());
         assertEquals("LEAVE_APPROVAL", definition.getDefinitionKey());
@@ -101,14 +104,14 @@ class WorkflowTest {
     }
 
     @Test
-    void testWorkflowVariables() {
+    void testWorkflowVariables() throws Exception {
         Map<String, Object> variables = new HashMap<>();
         variables.put("leaveDays", 5);
         variables.put("reason", "个人事务");
         variables.put("approver", "张三");
         
         WorkflowTask task = new WorkflowTask();
-        task.setVariables(com.alibaba.fastjson2.JSON.toJSONString(variables));
+        task.setVariables(objectMapper.writeValueAsString(variables));
         
         assertNotNull(task.getVariables());
         assertTrue(task.getVariables().contains("leaveDays"));

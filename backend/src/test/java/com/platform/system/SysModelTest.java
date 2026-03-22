@@ -22,22 +22,22 @@ class SysModelTest {
         user.setPassword("encrypted_password");
         user.setEmail("admin@example.com");
         user.setPhone("13800138000");
-        user.setEnabled(true);
+        user.setStatus(1);
         
         assertEquals("admin", user.getUsername());
         assertEquals("admin@example.com", user.getEmail());
-        assertTrue(user.getEnabled());
+        assertEquals(1, user.getStatus());
     }
 
     @Test
     void testSysUserStatus() {
         SysUser user = new SysUser();
         
-        user.setEnabled(true);
-        assertTrue(user.getEnabled());
+        user.setStatus(1);
+        assertEquals(1, user.getStatus());
         
-        user.setEnabled(false);
-        assertFalse(user.getEnabled());
+        user.setStatus(0);
+        assertEquals(0, user.getStatus());
     }
 
     @Test
@@ -47,11 +47,11 @@ class SysModelTest {
         role.setRoleName("管理员");
         role.setRoleCode("ADMIN");
         role.setDescription("系统管理员");
-        role.setEnabled(true);
+        role.setStatus(1);
         
         assertEquals("管理员", role.getRoleName());
         assertEquals("ADMIN", role.getRoleCode());
-        assertTrue(role.getEnabled());
+        assertEquals(1, role.getStatus());
     }
 
     @Test

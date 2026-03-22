@@ -19,4 +19,8 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
                 "SELECT role_id FROM sys_user_role WHERE user_id = " + userId);
         return list(wrapper);
     }
+    
+    public String getRoleCode(SysRole role) {
+        return role.getRoleCode();
+    }
 }

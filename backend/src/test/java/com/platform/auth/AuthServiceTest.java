@@ -1,8 +1,8 @@
 package com.platform.auth;
 
 import com.platform.auth.dto.LoginRequest;
+import com.platform.auth.dto.AuthResponse;
 import com.platform.auth.service.AuthService;
-import com.platform.common.Result;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,7 +26,7 @@ class AuthServiceTest {
         request.setUsername("admin");
         request.setPassword("admin123");
         
-        Result result = (Result) authService.login(request);
+        AuthResponse result = authService.login(request);
         assertNotNull(result);
     }
 

@@ -9,6 +9,7 @@ import com.platform.system.model.SysRole;
 import com.platform.system.service.SysRoleService;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import java.util.List;
 
 @Service
 public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> implements SysRoleService {
@@ -23,7 +24,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
         if (status != null) {
             wrapper.eq(SysRole::getStatus, status);
         }
-        wrapper.orderByDesc(SysRole::getCreateTime);
+        wrapper.orderByDesc(SysRole::getCreatedAt);
         return page(page, wrapper);
     }
     
@@ -40,5 +41,13 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     @Override
     public boolean deleteRole(Long id) {
         return removeById(id);
+    }
+    
+    @Override
+    public List<SysRole> getByUserId(Long userId) {
+        LambdaQueryWrapper<SysRole> wrapper = new LambdaQueryWrapper<>();
+        wrapper.inSql(SysRole::getId, 
+                "SELECT role_id FROM sys_user_role WHERE user_id = " + userId);
+        return list(wrapper);
     }
 }

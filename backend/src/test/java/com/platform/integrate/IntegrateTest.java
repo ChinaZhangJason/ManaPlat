@@ -13,14 +13,14 @@ class IntegrateTest {
     void testPlatformCreation() {
         IntegratePlatform platform = new IntegratePlatform();
         platform.setId(1L);
-        platform.setPlatformName("钉钉集成");
-        platform.setPlatformCode("DINGTALK");
+        platform.setName("钉钉集成");
+        platform.setCode("DINGTALK");
         platform.setBaseUrl("https://oapi.dingtalk.com");
         platform.setSsoMode("TOKEN");
         platform.setStatus(1);
         
-        assertEquals("钉钉集成", platform.getPlatformName());
-        assertEquals("DINGTALK", platform.getPlatformCode());
+        assertEquals("钉钉集成", platform.getName());
+        assertEquals("DINGTALK", platform.getCode());
         assertEquals("TOKEN", platform.getSsoMode());
     }
 
@@ -74,7 +74,7 @@ class IntegrateTest {
     void testIframeIntegration() {
         IntegratePlatform platform = new IntegratePlatform();
         platform.setBaseUrl("https://external-system.com");
-        platform.setPlatformCode("EXTERNAL");
+        platform.setCode("EXTERNAL");
         
         String iframeUrl = buildIframeUrl(platform, "token123", 1L);
         

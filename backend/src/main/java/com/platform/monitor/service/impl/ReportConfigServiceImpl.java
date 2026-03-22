@@ -104,7 +104,7 @@ public class ReportConfigServiceImpl extends ServiceImpl<ReportConfigMapper, Rep
                     .eq(ReportWidget::getReportId, id)
                     .orderByAsc(ReportWidget::getSortOrder)
             );
-            config.set("widgets", widgets);
+            config.setWidgets(widgets);
         }
         return config;
     }

@@ -60,7 +60,7 @@ public class AuthServiceImpl implements AuthService {
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setEmail(request.getEmail());
         user.setPhone(request.getPhone());
-        user.setEnabled(true);
+        user.setStatus(1);
         sysUserMapper.insert(user);
 
         CustomUserDetails userDetails = new CustomUserDetails(
